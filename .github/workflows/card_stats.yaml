@@ -7,6 +7,9 @@ on:
 
 jobs:
   build:
+    strategy:
+      matrix: 
+        theme: [light, dark]
     runs-on: ubuntu-latest
 
     permissions:
@@ -15,28 +18,20 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
-      - name: Generate stats card
+      - name: ${{ matrix.theme }} Generate stats card
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: stats
-          options: username=${{ github.repository_owner }}&show_icons=true
-          path: profile/stats.svg
+          options: username=${{ github.repository_owner }}&show_icons=true&theme=${{matrix.theme}}
+          path: profile/${{ matrix.theme }}.stats.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Generate top languages card
+      - name: ${{ matrix.theme }} Generate top languages card
         uses: stats-organization/github-readme-stats-action@v2
         with:
           card: top-langs
           options: username=${{ github.repository_owner }}&layout=compact&langs_count=6
-          path: profile/top-langs.svg
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Generate pin card
-        uses: stats-organization/github-readme-stats-action@v2
-        with:
-          card: pin
-          options: username=stats-organization&repo=github-readme-stats
-          path: profile/pin-stats-organization-github-readme-stats.svg
+          path: profile/${{matrix.theme}}.top-langs.svg
           token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Commit cards
