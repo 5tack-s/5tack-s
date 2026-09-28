@@ -1,4 +1,6 @@
-## Hi there 👋
+## Hi, I'm 5tack-s
+
+I build stuff.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/5tack-s/5tack-s/refs/heads/output/github-snake-dark.svg">
